@@ -208,7 +208,8 @@ pub struct OtherPacket {
 
 fn timeval_to_duration(ts: timeval) -> chrono::Duration {
     let timeval { tv_sec, tv_usec } = ts;
-    chrono::Duration::microseconds(tv_sec * 1_000_000 + tv_usec)
+    let tv_usec_cast = tv_usec as i64;
+    chrono::Duration::microseconds(tv_sec * 1_000_000 + tv_usec_cast)
 }
 
 enum Dissection<'a> {
